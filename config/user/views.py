@@ -2,17 +2,17 @@ from django.contrib.auth.hashers import make_password
 from django.shortcuts import render, redirect
 from .models import CustomUser
 from django.views import View
-from .forms import UserForm
+from .forms import UserCreationForm
 
 def home_page(request):
     return render(request, "home.html")
 
 '''
 def sign_up(request):
-    form = UserForm
+    form = UserCreationForm
 
     if request.method == "POST":
-        form = UserForm(request.POST)
+        form = UserCreationForm(request.POST)
 
         if form.is_valid():
             user = form.save(commit=False)
@@ -21,7 +21,7 @@ def sign_up(request):
 
             return redirect("login")
     else:
-        form = UserForm()
+        form = UserCreationForm()
     
     context = { "form" : form }
 
@@ -30,7 +30,7 @@ def sign_up(request):
 
 class SignUpView(View):
     def post(self, request):
-        form = UserForm(request.POST)
+        form = UserCreationForm(request.POST)
 
         if form.is_valid():
             user = form.save(commit=False)
@@ -44,7 +44,7 @@ class SignUpView(View):
         return render(request, "user/sign_up.html", context)
 
     def get(self, request):
-        form = UserForm()
+        form = UserCreationForm()
 
         context = { "form" : form }
 
