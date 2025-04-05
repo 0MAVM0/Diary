@@ -38,11 +38,11 @@ class SignUpView(View):
 
         context = { "form" : form }
 
-        return render(request, "user/signup.html", context)
+        return render(request, "user/sign_up.html", context)
 
     def get(self, request):
         form = UserForm()
 
         context = { "form" : form }
 
-        return render(request, "user/signup.html", context)
+        return render(request, "user/sign_up.html", context)
