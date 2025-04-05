@@ -4,6 +4,7 @@ from .models import CustomUser
 from django.views import View
 from .forms import UserForm
 
+'''
 def sign_up(request):
     form = UserForm
 
@@ -15,13 +16,14 @@ def sign_up(request):
             user.password = make_password(form.cleaned_data["password1"])
             form.save()
 
-            return redirect("home")
+            return redirect("login")
     else:
         form = UserForm()
     
     context = { "form" : form }
 
     return render(request, "user/signup.html", context)
+'''
 
 class SignUpView(View):
     def post(self, request):
@@ -32,12 +34,12 @@ class SignUpView(View):
             user.password = make_password(form.cleaned_data["password1"])
             form.save()
 
-            return redirect("home")
+            return redirect("login")
 
         context = { "form" : form }
 
         return render(request, "user/signup.html", context)
-    
+
     def get(self, request):
         form = UserForm()
 
