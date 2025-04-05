@@ -36,7 +36,7 @@ class SignUpView(View):
         if form.is_valid():
             user = form.save(commit=False)
             user.password = make_password(form.cleaned_data["password1"])
-            form.save()
+            user.save()
 
             return redirect("log_in")
 
