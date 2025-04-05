@@ -4,6 +4,9 @@ from .models import CustomUser
 from django.views import View
 from .forms import UserForm
 
+def home_page(request):
+    return render(request, "home.html")
+
 '''
 def sign_up(request):
     form = UserForm
