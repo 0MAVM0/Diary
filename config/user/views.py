@@ -1,5 +1,5 @@
+from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.hashers import make_password
-from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
 from .models import CustomUser
 from django.views import View
@@ -66,7 +66,7 @@ def log_in(request):
 
                 return redirect("home")
             else:
-                form.add_error("Doesn't Exist")
+                form.add_error(None, "Doesn't Exist")
     else:
         form = UserLoginForm()
     
@@ -93,3 +93,10 @@ class LogInView(View):
 
         return render(request, "user/log_in.html", context)
 '''
+
+def log_out(request):
+    if request.method == "POST":
+        logout(request)
+
+        return redirect("log_in")
+    return render(request, "user/log_out.html", {})
