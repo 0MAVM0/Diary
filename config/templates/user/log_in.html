@@ -13,6 +13,10 @@
                     {{ form.as_p }}
                     <button type="submit" class="btn btn-success">Verify</button>
                 </form>
+                <small>
+                    Does not have an account?
+                    <a href="{% url 'sign_up' %}">Sign Up</a>
+                </small>
             </div>
             <div class="col-4"></div>
         </div>

@@ -31,7 +31,7 @@
                         <span class="navbar-text me-3">{{ user.username }}</span>
                         <a href="{% url 'log_out' %}" class="btn btn-outline-primary">Log Out</a>
                     {% else %}
-                        <a href="/login" class="btn btn-outline-primary me-2">Log In</a>
+                        <a href="{% url 'log_in' %}" class="btn btn-outline-primary me-2">Log In</a>
                         <a href="{% url 'sign_up' %}" class="btn btn-primary">Sign Up</a>
                     {% endif %}
                 </div>
