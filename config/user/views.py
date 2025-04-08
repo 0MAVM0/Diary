@@ -1,6 +1,7 @@
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.hashers import make_password
 from django.shortcuts import render, redirect
+from django.contrib import messages
 from .models import CustomUser
 from django.views import View
 from .forms import *
@@ -10,17 +11,14 @@ def home_page(request):
 
 '''
 def sign_up(request):
-    form = UserCreationForm
-
     if request.method == "POST":
         form = UserCreationForm(request.POST)
 
         if form.is_valid():
-            user = form.save(commit=False)
-            user.password = make_password(form.cleaned_data["password1"])
-            user.save()
+            user = form.save()
+            messages.success(request, "Registration was successfull")
 
-            return redirect("login")
+            return redirect("log_in")
     else:
         form = UserCreationForm()
     
@@ -34,9 +32,8 @@ class SignUpView(View):
         form = UserCreationForm(request.POST)
 
         if form.is_valid():
-            user = form.save(commit=False)
-            user.password = make_password(form.cleaned_data["password1"])
-            user.save()
+            user = form.save()
+            messages.success(request, "Registration was successful")
 
             return redirect("log_in")
 
