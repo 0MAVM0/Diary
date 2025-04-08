@@ -100,3 +100,9 @@ def log_out(request):
 
         return redirect("log_in")
     return render(request, "user/log_out.html", {})
+
+def profile_view(request, id):
+    user = CustomUser.objects.filter(id=id).first()
+    context = { "user" : user }
+
+    return render(request, "user/profile.html", context)

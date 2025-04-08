@@ -28,7 +28,9 @@
                 </ul>
                 <div class="d-flex">
                     {% if request.user.is_authenticated %}
-                        <span class="navbar-text me-3">{{ user.username }}</span>
+                        <a href="{% url 'profile' user.id %}" class="btn btn-primary me-2">
+                            {{ user.username }}
+                        </a>
                         <a href="{% url 'log_out' %}" class="btn btn-outline-primary">Log Out</a>
                     {% else %}
                         <a href="{% url 'log_in' %}" class="btn btn-outline-primary me-2">Sign In</a>
