@@ -60,6 +60,7 @@ def log_in(request):
 
             if user is not None:
                 login(request, user)
+                messages.success(request, f"Welcome, {username}!")
 
                 return redirect("home")
             else:
