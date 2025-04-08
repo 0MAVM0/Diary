@@ -64,7 +64,9 @@ def log_in(request):
 
                 return redirect("home")
             else:
-                form.add_error(None, "Doesn't Exist")
+                messages.error(request, "Username Or Password Is Incorrect")
+        else:
+            messages.error(request, "Error In Filling Form")
     else:
         form = UserLoginForm()
     
