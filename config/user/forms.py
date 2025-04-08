@@ -10,7 +10,7 @@ class UserCreationForm(forms.ModelForm):
         model = CustomUser
         fields = ("username", "email", "password1", "password2")
 
-    def clean_password1(self):
+    def clean(self):
         cleaned_data = super().clean()
         password1 = self.cleaned_data.get("password1")
         password2 = self.cleaned_data.get("password2")
@@ -34,13 +34,18 @@ class UserLoginForm(forms.Form):
     password = forms.CharField(widget=forms.PasswordInput, label="Password")
 
     def clean(self):
+        cleaned_data = super().clean()
         username = self.cleaned_data.get("username")
         password = self.cleaned_data.get("password")
 
         user = CustomUser.objects.filter(username=username, password=password).first()
 
-        if user:
-            if not user.check_password(password):
-                raise ValidationError("Password Is Not Correct")
-        
-        return self.cleaned_data
+        if username and password:
+            try:
+                user = CustomUser.objects.get(username=username)
+                if not user.check_password(password):
+                    raise ValidationError("Incorrect Password!")
+            except CustomUser.DoesNotExist:
+                raise ValidationError("Doesn't exist")
+
+        return cleaned_data
