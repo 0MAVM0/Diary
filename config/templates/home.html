@@ -3,5 +3,27 @@
 {% block title %}Main Page{% endblock title %}
 
 {% block content %}
-    <h3>Hello World!</h3>
+    <div class="container mt-5">
+        <h3 class="text-center">Grades Of Students</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th class="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Subject</th>
+                    <th scope="col">Grade</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for grade in grades %}
+                    <tr>
+                        <th scope="row">{{ grade.id }}</th>
+                        <td>{{ grade.student.first_name }}</td>
+                        <td>{{ grade.subject }}</td>
+                        <td>{{ grade.grade }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 {% endblock content %}

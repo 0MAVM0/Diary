@@ -22,4 +22,4 @@ class Grade(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self) -> str:
-        return f"{self.student} - {self.Subject} - {self.grade}"
+        return f"{self.student} - {self.subject} - {self.grade}"

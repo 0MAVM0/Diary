@@ -1,13 +1,25 @@
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.hashers import make_password
 from django.shortcuts import render, redirect
+from django.views.generic import ListView
 from django.contrib import messages
+from grade.models import Grade
 from .models import CustomUser
 from django.views import View
 from .forms import *
 
+'''
+class HomePageView(ListView):
+    template_name = "home.html"
+    context_object_name = "grades"
+    model = Grade
+'''
+
 def home_page(request):
-    return render(request, "home.html")
+    grades = Grade.objects.all()
+    context = { "grades" : grades }
+
+    return render(request, "home.html", context)
 
 '''
 def sign_up(request):

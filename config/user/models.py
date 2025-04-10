@@ -10,4 +10,4 @@ class CustomUser(AbstractUser):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self) -> str:
-        return f"{self.username} - {self.phone} - {self.address}"
+        return f"{self.username}"
