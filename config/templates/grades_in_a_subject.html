@@ -1,40 +1,32 @@
 {% extends "base.html" %}
 
-{% block title %}Main Page{% endblock title %}
+{% block title %}Grades In {{ subject }}{% endblock title %}
 
 {% block content %}
     <div class="container mt-5">
-        <h3 class="text-center">Grades Of Students</h3>
+        <h3 class="text-center">Grades In {{ subject }}</h3>
         <table class="table">
             <thead>
                 <tr>
                     <th class="col">#</th>
                     <th scope="col">Name</th>
-                    <th scope="col">Subject</th>
                     <th scope="col">Grade</th>
+                    <th scope="col">Date</th>
                 </tr>
             </thead>
             <tbody>
-                {% for grade in page_obj %}
+                {% for grade in grades %}
                     <tr>
                         <th scope="row">{{ grade.id }}</th>
-                        <td>
-                            <a href="{% url 'grades_of_a_student' grade.student.id %}" class="text-decoration-none">
-                                {{ grade.student }}
-                            </a>
-                        </td>
-                        <td>
-                            <a href="{% url 'grades_in_a_subject' grade.subject.id %}" class="text-decoration-none">
-                                {{ grade.subject }}
-                            </a>
-                        </td>
+                        <td>{{ grade.student }}</td>
                         <td>{{ grade.grade }}</td>
+                        <td>{{ grade.created_at }}</td>
                     </tr>
                 {% endfor %}
             </tbody>
         </table>
     </div>
-    <div class="container mt-3">
+    <!-- <div class="container mt-3">
         <nav>
             <ul class="pagination justify-content-center">
                 {% if page_obj.has_previous %}
@@ -44,7 +36,7 @@
                         </a>
                     </li>
                 {% else %}
-                    <!-- NOTHING -->
+                    NOTHING
                 {% endif %}
                     <li class="page-item active">
                         <span class="page-link">{{ page_obj.number }}</span>
@@ -56,9 +48,9 @@
                         </a>
                     </li>
                 {% else %}
-                    <!-- NOTHING -->
+                    NOTHING
                 {% endif %}
             </ul>
         </nav>
-    </div>
+    </div> -->
 {% endblock content %}
