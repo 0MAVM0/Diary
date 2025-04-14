@@ -1,10 +1,10 @@
 {% extends "base.html" %}
 
-{% block title %}Main Page{% endblock title %}
+{% block title %}Grades Of {{ student }}{% endblock title %}
 
 {% block content %}
     <div class="container mt-5">
-        <h3 class="text-center">Grades Of Students</h3>
+        <h3 class="text-center">Grades Of {{ student }}</h3>
         <table class="table">
             <thead>
                 <tr>
@@ -15,14 +15,10 @@
                 </tr>
             </thead>
             <tbody>
-                {% for grade in page_obj %}
+                {% for grade in grades %}
                     <tr>
                         <th scope="row">{{ grade.id }}</th>
-                        <td>
-                            <a href="{% url 'grades_of_a_student' grade.student.id %}" class="text-decoration-none">
-                                {{ grade.student }}
-                            </a>
-                        </td>
+                        <td>{{ grade.student }}</td>
                         <td>{{ grade.subject }}</td>
                         <td>{{ grade.grade }}</td>
                     </tr>
@@ -30,7 +26,7 @@
             </tbody>
         </table>
     </div>
-    <div class="container mt-3">
+    <!-- <div class="container mt-3">
         <nav>
             <ul class="pagination justify-content-center">
                 {% if page_obj.has_previous %}
@@ -40,7 +36,7 @@
                         </a>
                     </li>
                 {% else %}
-                    <!-- NOTHING -->
+                    NOTHING
                 {% endif %}
                     <li class="page-item active">
                         <span class="page-link">{{ page_obj.number }}</span>
@@ -52,9 +48,9 @@
                         </a>
                     </li>
                 {% else %}
-                    <!-- NOTHING -->
+                    NOTHING
                 {% endif %}
             </ul>
         </nav>
-    </div>
+    </div> -->
 {% endblock content %}

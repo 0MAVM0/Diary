@@ -1,6 +1,7 @@
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.hashers import make_password
 from django.shortcuts import render, redirect
+from django.core.paginator import Paginator
 from django.views.generic import ListView
 from django.contrib import messages
 from grade.models import Grade
@@ -17,7 +18,10 @@ class HomePageView(ListView):
 
 def home_page(request):
     grades = Grade.objects.all()
-    context = { "grades" : grades }
+    pages = Paginator(grades, 2)
+    page_number = request.GET.get("page")
+    page_obj = pages.get_page(page_number)
+    context = { "page_obj" : page_obj }
 
     return render(request, "home.html", context)
 

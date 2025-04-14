@@ -19,3 +19,13 @@ def classes(request):
     context = { "classes" : classes }
 
     return render(request, "classes.html", context)
+
+def grades_of_student(request, id):
+    student = CustomUser.objects.filter(id=id).first()
+    grades = Grade.objects.filter(student=student)
+    context = {
+        "student" : student,
+        "grades" : grades
+    }
+
+    return render(request, "user/grades_of_a_student.html", context)
