@@ -28,6 +28,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'add_class' %}">Add Class</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'add_subject' %}">Add Subject</a>
+                    </li>
                 </ul>
                 <div class="d-flex">
                     {% if request.user.is_authenticated %}

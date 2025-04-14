@@ -29,9 +29,22 @@ def add_class(request):
         if form.is_valid():
             form.save()
 
-            return redirect("home") # HAS TO BE CHANGED
+            return redirect("add_subject")
     else:
         form = ClassForm()
     context = { "form" : form }
 
     return render(request, "add_class.html", context)
+
+def add_subject(request):
+    if request.method == "POST":
+        form = SubjectForm(request.POST)
+        if form.is_valid():
+            form.save()
+
+            return redirect("home") # HAS TO BE CHANGED
+    else:
+        form = SubjectForm()
+    context = { "form" : form }
+
+    return render(request, "add_subject.html", context)
