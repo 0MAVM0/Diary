@@ -42,9 +42,22 @@ def add_subject(request):
         if form.is_valid():
             form.save()
 
-            return redirect("home") # HAS TO BE CHANGED
+            return redirect("evaluate")
     else:
         form = SubjectForm()
     context = { "form" : form }
 
     return render(request, "add_subject.html", context)
+
+def evaluate(request):
+    if request.method == "POST":
+        form = GradeForm(request.POST)
+        if form.is_valid():
+            form.save()
+
+            return redirect("home")
+    else:
+        form = GradeForm()
+    context = { "form" : form }
+
+    return render(request, "evaluate.html", context)

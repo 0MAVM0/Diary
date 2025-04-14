@@ -6,4 +6,5 @@ urlpatterns = [
     path("subject/<int:id>/", grades_in_subject, name="grades_in_a_subject"),
     path("add_class/", add_class, name="add_class"),
     path("add_subject/", add_subject, name="add_subject"),
+    path("evaluate/", evaluate, name="evaluate"),
 ]
