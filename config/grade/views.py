@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from user.models import CustomUser
 from .models import *
+from .forms import *
 
 def grades_of_student(request, id):
     student = CustomUser.objects.filter(id=id).first()
@@ -21,3 +22,16 @@ def grades_in_subject(request, id):
     }
 
     return render(request, "grades_in_a_subject.html", context)
+
+def add_class(request):
+    if request.method == "POST":
+        form = ClassForm(request.POST)
+        if form.is_valid():
+            form.save()
+
+            return redirect("home") # HAS TO BE CHANGED
+    else:
+        form = ClassForm()
+    context = { "form" : form }
+
+    return render(request, "add_class.html", context)
