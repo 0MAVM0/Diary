@@ -15,7 +15,7 @@
                 </tr>
             </thead>
             <tbody>
-                {% for grade in grades %}
+                {% for grade in page_obj %}
                     <tr>
                         <th scope="row">{{ grade.id }}</th>
                         <td>{{ grade.student }}</td>
@@ -26,7 +26,7 @@
             </tbody>
         </table>
     </div>
-    <!-- <div class="container mt-3">
+    <div class="container mt-3">
         <nav>
             <ul class="pagination justify-content-center">
                 {% if page_obj.has_previous %}
@@ -36,7 +36,7 @@
                         </a>
                     </li>
                 {% else %}
-                    NOTHING
+                    <!-- NOTHING -->
                 {% endif %}
                     <li class="page-item active">
                         <span class="page-link">{{ page_obj.number }}</span>
@@ -48,9 +48,9 @@
                         </a>
                     </li>
                 {% else %}
-                    NOTHING
+                    <!-- NOTHING -->
                 {% endif %}
             </ul>
         </nav>
-    </div> -->
+    </div>
 {% endblock content %}

@@ -38,9 +38,12 @@ def grades_of_student(request, id):
 def grades_in_subject(request, id):
     subject = Subject.objects.filter(id=id).first()
     grades = Grade.objects.filter(subject=subject)
+    pages = Paginator(grades, 2)
+    page_number = request.GET.get("page")
+    page_obj = pages.get_page(page_number)
     context = {
         "subject" : subject,
-        "grades" : grades
+        "page_obj" : page_obj
     }
 
     return render(request, "grades_in_a_subject.html", context)
