@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}All Subjects{% endblock title %}
+
+{% block content %}
+    <div class="container mt-5">
+        <h3 class="text-center">List Of Subjects</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th class="col">#</th>
+                    <th scope="col">Subject</th>
+                    <th scope="col">Class</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for subject in subjects %}
+                    <tr>
+                        <th scope="row">{{ subject.id }}</th>
+                        <td>
+                            <a href="{% url 'grades_in_a_subject' subject.id %}" class="text-decoration-none">
+                                {{ subject.subject }}
+                            </a>
+                        </td>
+                        <td>{{ subject.clas }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock content %}

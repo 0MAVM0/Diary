@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}All Students{% endblock title %}
+
+{% block content %}
+    <div class="container mt-5">
+        <h3 class="text-center">List Of CLasses</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th class="col">#</th>
+                    <th scope="col">Username</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for student in students %}
+                    <tr>
+                        <th scope="row">{{ student.id }}</th>
+                        <td>
+                            <a href="{% url 'grades_of_a_student' student.id %}" class="text-decoration-none">
+                                {{ student.username }}
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock content %}
