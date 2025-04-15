@@ -15,7 +15,10 @@ def subjects(request):
 
 def students(request):
     students = CustomUser.objects.all()
-    context = { "students" : students }
+    pages = Paginator(students, 2)
+    page_number = request.GET.get("page")
+    page_obj = pages.get_page(page_number)
+    context = { "page_obj" : page_obj }
 
     return render(request, "students.html", context)
 
