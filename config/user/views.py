@@ -122,3 +122,18 @@ def profile_view(request, id):
     context = { "user" : user }
 
     return render(request, "user/profile.html", context)
+
+def staff(request):
+    students = CustomUser.objects.all()
+    staff = []
+
+    for student in students:
+        if student.is_staff:
+            staff.append(student)
+
+    pages = Paginator(staff, 2)
+    page_number = request.GET.get("page")
+    page_obj = pages.get_page(page_number)
+    context = { "page_obj" : page_obj }
+
+    return render(request, "staff.html", context)
