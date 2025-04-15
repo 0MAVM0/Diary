@@ -25,9 +25,12 @@ def students(request):
 def grades_of_student(request, id):
     student = CustomUser.objects.filter(id=id).first()
     grades = Grade.objects.filter(student=student)
+    pages = Paginator(grades, 2)
+    page_number = request.GET.get("page")
+    page_obj = pages.get_page(page_number)
     context = {
         "student" : student,
-        "grades" : grades
+        "page_obj" : page_obj
     }
 
     return render(request, "grades_of_a_student.html", context)
